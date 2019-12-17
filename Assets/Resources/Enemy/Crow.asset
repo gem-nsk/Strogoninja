@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edcbd5c68fe88d64c8f6a7d089bc0e88, type: 3}
+  m_Name: Crow
+  m_EditorClassIdentifier: 
+  SpriteSheet:
+  - {fileID: 21300000, guid: 83bb736d3ebee424e80ecf01dee11e37, type: 3}
+  - {fileID: 21300000, guid: 171eb57aaf86fb94cb217d6489fdd4a6, type: 3}
+  DeathParticles: {fileID: 8177641925900819882, guid: d8d4f2f99f492c74bbc5508f366c569d,
+    type: 3}
+  BaseSpeed: 0.8
