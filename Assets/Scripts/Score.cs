@@ -37,6 +37,8 @@ public class Score : ObjectInteractionBasement
         _highscore = PlayerPrefs.GetInt("hs");
     }
 
+
+
     public void ResetScore()
     {
         _Score = 0;
@@ -55,5 +57,7 @@ public class Score : ObjectInteractionBasement
         _Score++;
         if(AddScoreHandler != null)
         AddScoreHandler(_Score);
+
+        _Logic.CheckScore(_Score);
     }
 }

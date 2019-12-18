@@ -24,13 +24,16 @@ public class EnemyInteractionBasement : ObjectInteractionBasement
     {
         Vector3 origin = transform.position;
         float _time = 0;
+        float _State;
         float dist =  Vector2.Distance(origin, target.position);
 
         Vector2 maxVec = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height / 2, 5));
 
         while (transform.position != target.position)
         {
-            transform.position = Vector3.Lerp(origin, target.position, _time / time);
+            _State = _time / time;
+
+            transform.position = Vector3.Lerp(origin, target.position, _State);
             Vector3 relative = transform.InverseTransformPoint(target.position);
             float angle = Mathf.Atan2(relative.x, relative.y) * Mathf.Rad2Deg;
             transform.Rotate(0, 0, -angle - 90);
@@ -42,7 +45,7 @@ public class EnemyInteractionBasement : ObjectInteractionBasement
             else
                 rend.flipY = false;
 
-            _time += (dist / maxVec.magnitude) * Time.deltaTime;
+            _time += (dist / maxVec.magnitude) * (Time.deltaTime / _Logic._Level._Settings._SpeedModifier);
             yield return null;
         }
     }

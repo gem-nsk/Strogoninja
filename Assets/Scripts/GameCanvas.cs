@@ -8,6 +8,7 @@ public class GameCanvas : ObjectInteractionBasement
     public Text _ScoreText;
     public GameObject _TapToStartText; 
     public Canvas_Deathscreen _Deathscreen;
+    public GameObject _WinScreen;
 
     private bool _isOn;
 
@@ -30,6 +31,7 @@ public class GameCanvas : ObjectInteractionBasement
         _ScoreText.gameObject.SetActive(true);
         _TapToStartText.SetActive(false);
         _Deathscreen.gameObject.SetActive(false);
+        _WinScreen.SetActive(false);
     }
 
     public void DeathScreen()
@@ -40,9 +42,16 @@ public class GameCanvas : ObjectInteractionBasement
         _Deathscreen.Init();
     }
 
+    public void WinScreen()
+    {
+        _ScoreText.gameObject.SetActive(false);
+        _TapToStartText.SetActive(false);
+        _WinScreen.SetActive(true);
+    }
+
     public void UpdateScoreText(int score)
     {
-        _ScoreText.text = score + "";
+        _ScoreText.text = score + "/" + _Logic._Level._Settings._TargetPoints;
     }
 
     public IEnumerator BlinkStart()

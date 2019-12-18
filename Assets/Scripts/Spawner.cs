@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class Spawner : ObjectInteractionBasement
 {
-    public GameObject prefab;
+    public GameObject[] prefabs;
     private GameObject _currentPrefab;
     public float StartDelay;
     public float Delay;
@@ -31,8 +31,8 @@ public class Spawner : ObjectInteractionBasement
     {
         base.DeActivate();
         _spawn = false;
-        if (_currentPrefab)
-            Destroy(_currentPrefab);
+        if (_currentPrefab != null)
+            _currentPrefab.GetComponent<EnemyInteractionBasement>().Interact();
     }
 
     public IEnumerator SpawnEnemys()
@@ -43,7 +43,7 @@ public class Spawner : ObjectInteractionBasement
             if(_currentPrefab == null)
             {
                 yield return new WaitForSeconds(Delay);
-                GameObject obj = Instantiate(prefab);
+                GameObject obj = Instantiate(prefabs[Random.Range(0, prefabs.Length)]);
 
                 obj.transform.position = GetPos();
                 EnemyInteractionBasement enemy = obj.GetComponent<EnemyInteractionBasement>();

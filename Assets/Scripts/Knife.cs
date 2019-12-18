@@ -96,17 +96,17 @@ public class Knife : ObjectInteractionBasement
         
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        return;
-        if(_isOn)
-        {
-            if(_oldPos != transform.position)
-            {
-                collision.GetComponent<ObjectInteractionBasement>().Interact();
-                Debug.Log(collision.name + " object");
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    return;
+    //    if(_isOn)
+    //    {
+    //        if(_oldPos != transform.position)
+    //        {
+    //            collision.GetComponent<ObjectInteractionBasement>().Interact();
+    //            Debug.Log(collision.name + " object");
 
-            }
-        }
-    }
+    //        }
+    //    }
+    //}
 }

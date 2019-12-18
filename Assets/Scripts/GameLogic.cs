@@ -13,6 +13,7 @@ public class GameLogic : MonoBehaviour
     public Score _Score;
     public MusicController _Music;
     public GameCanvas _canvas;
+    public Level _Level;
 
     public GameState _state;
 
@@ -50,14 +51,6 @@ public class GameLogic : MonoBehaviour
         _Score.Init();
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            SwitchState(_GameState_InGame);
-        }
-    }
-
     public void SwitchState(GameState state)
     {
         _state.Deactivate();
@@ -73,6 +66,28 @@ public class GameLogic : MonoBehaviour
     public void Restart()
     {
         _state.Restart();
+    }
+
+    public void CheckScore(int score)
+    {
+        if(score >= _Level._Settings._TargetPoints)
+        {
+            Win();
+        }
+    }
+
+    void Win()
+    {
+        _Level.Setlevel(_Level._Settings._levelNumber + 1);
+        SwitchState(_GameState_Menu);
+        _canvas.WinScreen();
+        Debug.Log("Win");
+
+    }
+
+    public void Nextlevel()
+    {
+        SwitchState(_GameState_InGame);
     }
 
     public IEnumerator MoveObjectToPos(Transform obj, Vector2 pos, float ElapsedTime)
@@ -132,6 +147,8 @@ public class GameState_FirstMenu : GameState
         _GameLogic._Bg.transform.position = new Vector2(0, 5);
 
         _GameLogic._Input.Tap.AddListener(WaitForTouch);
+
+        _GameLogic._Level.Init();
     }
 
     void WaitForTouch()

@@ -60,7 +60,7 @@ public class ObjectRotation : ObjectInteractionBasement
         base.Interact();
         _Particle.Play();
         _hitSpeed += 0.5f;
-        GameLogic.instance._Score.Add();
-        GameLogic.instance._Music.PlayTargetCut();
+        _Logic._Score.Add();
+        _Logic._Music.PlayTargetCut();
     }
 }
