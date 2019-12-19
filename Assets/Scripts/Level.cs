@@ -103,7 +103,7 @@ namespace GameDifficulty
             return new LevelSettings()
             {
                 _levelNumber = level,
-                _SpeedModifier = 1f,
+                _SpeedModifier = 1.2f,
                 _TargetPoints = 100,
                 _StartPenalty = 1.2f
             };
@@ -116,7 +116,7 @@ namespace GameDifficulty
             return new LevelSettings()
             {
                 _levelNumber = level,
-                _SpeedModifier = 0.85f,
+                _SpeedModifier = 1f,
                 _TargetPoints = 120,
                 _StartPenalty = 1.5f
             };

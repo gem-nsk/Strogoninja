@@ -10,8 +10,11 @@ public class GameCanvas : ObjectInteractionBasement
     public GameObject _TapToStartText; 
     public Canvas_Deathscreen _Deathscreen;
     public GameObject _WinScreen;
+    public Text _Text_level;
+    public Text _Text_nextlevel;
 
-    private bool _isOn;
+    [SerializeField]
+    public bool _isOn;
 
     public override void Init()
     {
@@ -22,16 +25,19 @@ public class GameCanvas : ObjectInteractionBasement
         }
         _TapToStartText.SetActive(true);
         _Deathscreen.gameObject.SetActive(false);
+        _ScoreSlider.gameObject.SetActive(false);
         _isOn = true;
         StartCoroutine(BlinkStart());
     }
 
     public void InGame()
     {
+
         _isOn = false;
         _ScoreText.gameObject.SetActive(true);
         _TapToStartText.SetActive(false);
         _Deathscreen.gameObject.SetActive(false);
+        _ScoreSlider.gameObject.SetActive(true);
         _WinScreen.SetActive(false);
     }
 
@@ -55,6 +61,9 @@ public class GameCanvas : ObjectInteractionBasement
         _ScoreText.text = score + "/" + _Logic._Level._Settings._TargetPoints;
         _ScoreSlider.maxValue = _Logic._Level._Settings._TargetPoints;
         _ScoreSlider.value = score;
+
+        _Text_level.text = _Logic._Level._Settings._levelNumber + "";
+        _Text_nextlevel.text = _Logic._Level._Settings._levelNumber + 1 +"";
     }
 
     public IEnumerator BlinkStart()

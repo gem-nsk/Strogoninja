@@ -19,6 +19,7 @@ public class Knife : ObjectInteractionBasement
     public override void DeActivate()
     {
         base.DeActivate();
+        Debug.Log("Knife deactivated");
         _isOn = false;
     }
 

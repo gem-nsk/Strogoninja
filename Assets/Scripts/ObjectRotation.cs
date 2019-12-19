@@ -57,10 +57,13 @@ public class ObjectRotation : ObjectInteractionBasement
 
     public override void Interact()
     {
-        base.Interact();
-        _Particle.Play();
-        _hitSpeed += 0.5f;
-        _Logic._Score.Add();
-        _Logic._Music.PlayTargetCut();
+        if (_IsOn)
+        {
+            base.Interact();
+            _Particle.Play();
+            _hitSpeed += 0.5f;
+            _Logic._Score.Add();
+            _Logic._Music.PlayTargetCut();
+        }
     }
 }

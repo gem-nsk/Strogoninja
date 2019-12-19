@@ -20,13 +20,24 @@ public class Spawner : ObjectInteractionBasement
             Destroy(_currentPrefab);
         }
         _spawn = true;
-        Interact();
+        StartCoroutine(SpawnEnemys());
     }
+
+    //spawn enemys
     public override void Interact()
     {
         base.Interact();
-        StartCoroutine(SpawnEnemys());
+        Debug.Log("spawned enemy");
+        GameObject obj = Instantiate(prefabs[Random.Range(0, prefabs.Length)]);
+
+        obj.transform.position = GetPos();
+        EnemyInteractionBasement enemy = obj.GetComponent<EnemyInteractionBasement>();
+
+        enemy.Init(GameLogic.instance._object.transform, enemy.behaviour.BaseSpeed);
+
+        _currentPrefab = obj;
     }
+
     public override void DeActivate()
     {
         base.DeActivate();
@@ -40,22 +51,27 @@ public class Spawner : ObjectInteractionBasement
             _currentPrefab.GetComponent<EnemyInteractionBasement>().Interact();
     }
 
+    public ObjectInteractionBasement GetCurrentEnemy() { return _currentPrefab?.GetComponent<ObjectInteractionBasement>(); }
+
     public IEnumerator SpawnEnemys()
     {
         yield return new WaitForSeconds(_Logic._Level._Settings._StartPenalty);
+        while (_spawn)
+        {
+            if (_currentPrefab == null)
+            {
+                yield return new WaitForSeconds(Delay);
+                Interact();
+            }
+            yield return null;
+        }
+
         while(_spawn)
         {
             if(_currentPrefab == null)
             {
                 yield return new WaitForSeconds(Delay);
-                GameObject obj = Instantiate(prefabs[Random.Range(0, prefabs.Length)]);
-
-                obj.transform.position = GetPos();
-                EnemyInteractionBasement enemy = obj.GetComponent<EnemyInteractionBasement>();
-
-                enemy.Init(GameLogic.instance._object.transform, enemy.behaviour.BaseSpeed);
-
-                _currentPrefab = obj;
+                
             }
             yield return null;
         }

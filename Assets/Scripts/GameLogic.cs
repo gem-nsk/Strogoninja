@@ -14,6 +14,7 @@ public class GameLogic : MonoBehaviour
     public MusicController _Music;
     public GameCanvas _canvas;
     public Level _Level;
+    public Tutorial _Tutorial;
 
     public GameState _state;
 
@@ -81,6 +82,7 @@ public class GameLogic : MonoBehaviour
         _Level.Setlevel(_Level._Settings._levelNumber + 1);
         SwitchState(_GameState_Menu);
         _canvas.WinScreen();
+        _spawner.DeActivate();
         _spawner.DeleteEnemy();
         Debug.Log("Win");
 
@@ -150,13 +152,13 @@ public class GameState_FirstMenu : GameState
         _GameLogic._Input.Tap.AddListener(WaitForTouch);
 
         _GameLogic._Level.Init();
+
     }
 
     void WaitForTouch()
     {
         _GameLogic._Person.Interact();
-        _GameLogic._canvas.InGame();
-
+        _GameLogic._canvas._isOn = false;
         _GameLogic.StartCoroutine(Animate());
 
         Debug.Log("Touched");
@@ -225,6 +227,8 @@ public class GameState_InGame : GameState
         _GameLogic._knife.Init();
         _GameLogic._spawner.Init();
         _GameLogic._Music.PlayGameMusic();
+
+        _GameLogic._Tutorial.Init();
     }
 
     public override void Deactivate()
