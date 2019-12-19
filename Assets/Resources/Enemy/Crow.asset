@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Crow
   m_EditorClassIdentifier: 
   SpriteSheet:
-  - {fileID: 21300000, guid: 83bb736d3ebee424e80ecf01dee11e37, type: 3}
-  - {fileID: 21300000, guid: 171eb57aaf86fb94cb217d6489fdd4a6, type: 3}
+  - {fileID: 21300000, guid: ab010b388a31f412caa50b3f83acea93, type: 3}
+  - {fileID: 21300000, guid: 83464c7f1cd9841589d5c97bc158c9d9, type: 3}
   DeathParticles: {fileID: 8177641925900819882, guid: d8d4f2f99f492c74bbc5508f366c569d,
     type: 3}
-  BaseSpeed: 2
+  BaseSpeed: 1
   MovingCurve:
     serializedVersion: 2
     m_Curve:

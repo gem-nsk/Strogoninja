@@ -31,13 +31,18 @@ public class Spawner : ObjectInteractionBasement
     {
         base.DeActivate();
         _spawn = false;
+        
+    }
+
+    public void DeleteEnemy()
+    {
         if (_currentPrefab != null)
             _currentPrefab.GetComponent<EnemyInteractionBasement>().Interact();
     }
 
     public IEnumerator SpawnEnemys()
     {
-        yield return new WaitForSeconds(StartDelay);
+        yield return new WaitForSeconds(_Logic._Level._Settings._StartPenalty);
         while(_spawn)
         {
             if(_currentPrefab == null)

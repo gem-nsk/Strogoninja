@@ -8,6 +8,7 @@ public struct LevelSettings
     public int _levelNumber; 
     public float _SpeedModifier;
     public int _TargetPoints;
+    public float _StartPenalty;
     public enum _Difficulty
     {
         Easy,
@@ -44,7 +45,9 @@ public class Level : ObjectInteractionBasement
 
     public void Setlevel(int id)
     {
-        _Settings = _Pattern.GetDifficulty(id).GetSettings(id);
+        _Settings = GetLevelFromResources(id);
+        //_Settings = _Pattern.GetDifficulty(id).GetSettings(id);
+        PlayerPrefs.SetInt(LevelIdKey, id);
     }
     private bool SaveExists()
     {
@@ -54,6 +57,19 @@ public class Level : ObjectInteractionBasement
         }
         else
             return false;
+    }
+
+    public LevelSettings GetLevelFromResources(int id)
+    {
+        LevelObject _settings = (LevelObject)Resources.Load("Levels/level_" + id);
+        if (_settings)
+        {
+            return _settings._Setup;
+        }
+        else
+        {
+            return _Pattern.GetDifficulty(id).GetSettings(id);
+        }
     }
 }
 
@@ -75,7 +91,8 @@ namespace GameDifficulty
             {
                 _levelNumber = level,
                 _SpeedModifier = 1.3f,
-                _TargetPoints = 60
+                _TargetPoints = 60,
+                _StartPenalty = 0.7f
             };
         }
     }
@@ -87,7 +104,8 @@ namespace GameDifficulty
             {
                 _levelNumber = level,
                 _SpeedModifier = 1f,
-                _TargetPoints = 100
+                _TargetPoints = 100,
+                _StartPenalty = 1.2f
             };
         }
     }
@@ -98,8 +116,9 @@ namespace GameDifficulty
             return new LevelSettings()
             {
                 _levelNumber = level,
-                _SpeedModifier = 0.7f,
-                _TargetPoints = 120
+                _SpeedModifier = 0.85f,
+                _TargetPoints = 120,
+                _StartPenalty = 1.5f
             };
         }
     }

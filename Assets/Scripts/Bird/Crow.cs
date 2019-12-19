@@ -17,7 +17,7 @@ public class Crow : EnemyInteractionBasement
         if(collision.tag == "Player")
         {
             Debug.Log("bird reached target!");
-            GameLogic.instance.Loose();
+            _Logic.Loose();
         }
     }
 }

@@ -81,6 +81,7 @@ public class GameLogic : MonoBehaviour
         _Level.Setlevel(_Level._Settings._levelNumber + 1);
         SwitchState(_GameState_Menu);
         _canvas.WinScreen();
+        _spawner.DeleteEnemy();
         Debug.Log("Win");
 
     }

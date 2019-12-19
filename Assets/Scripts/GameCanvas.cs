@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class GameCanvas : ObjectInteractionBasement
 {
     public Text _ScoreText;
+    public Slider _ScoreSlider;
     public GameObject _TapToStartText; 
     public Canvas_Deathscreen _Deathscreen;
     public GameObject _WinScreen;
@@ -52,6 +53,8 @@ public class GameCanvas : ObjectInteractionBasement
     public void UpdateScoreText(int score)
     {
         _ScoreText.text = score + "/" + _Logic._Level._Settings._TargetPoints;
+        _ScoreSlider.maxValue = _Logic._Level._Settings._TargetPoints;
+        _ScoreSlider.value = score;
     }
 
     public IEnumerator BlinkStart()
