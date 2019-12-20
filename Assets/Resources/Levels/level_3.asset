@@ -15,5 +15,5 @@ MonoBehaviour:
   _Setup:
     _levelNumber: 3
     _SpeedModifier: 1
-    _TargetPoints: 80
+    _TargetPoints: 60
     _StartPenalty: 0.5

@@ -10,8 +10,10 @@ public class Score : ObjectInteractionBasement
     public delegate void AddScore(int score);
     public static AddScore AddScoreHandler;
 
-    public int _score;
-    public int _Score
+    public int _Score;
+
+    private int _score;
+    public int _totalScore
     {
         get
         {
@@ -20,9 +22,9 @@ public class Score : ObjectInteractionBasement
         set
         {
             _score = value;
-            if(_score > _highscore)
+            if(_totalScore > _highscore)
             {
-                _highscore = _score;
+                _highscore = _totalScore;
 
             }
         }
@@ -45,6 +47,11 @@ public class Score : ObjectInteractionBasement
         AddScoreHandler(_Score);
     }
 
+    public void ResetTotalScore()
+    {
+        _totalScore = 0;
+    }
+
     public override void Interact()
     {
         base.Interact();
@@ -52,9 +59,15 @@ public class Score : ObjectInteractionBasement
         Debug.Log("Saved hs : " + _highscore);
     }
 
+    public void AddLevelPoints()
+    {
+        _totalScore++;
+    }
+
     public void Add()
     {
         _Score++;
+        AddLevelPoints();
         if(AddScoreHandler != null)
         AddScoreHandler(_Score);
 

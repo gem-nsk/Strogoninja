@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TutorialScenarious;
 
 [System.Serializable]
 public struct TutorialStep
@@ -22,11 +23,15 @@ public class Tutorial : ObjectInteractionBasement
     private const string _tutKey = "_tut";
 
     public Transform Helper;
+    public SpriteRenderer _bg_rend;
+
+
 
     public TutorialStep[] _steps = {
         new TutorialStep() { Scenario = new _Tutorial_Scenario_Fish() },
         new TutorialStep() { Scenario = new _Tutorial_Scenario_Enemy() }
     };
+
     private int _currentStep = 0;
 
 
@@ -62,6 +67,40 @@ public class Tutorial : ObjectInteractionBasement
         }
     }
 
+    public IEnumerator FocusBG()
+    {
+        float _time = 0;
+        float _elapsedTime = 1;
+
+        _bg_rend.color = new Color(0, 0, 0, 0);
+        _bg_rend.gameObject.SetActive(true);
+
+        while(_time < _elapsedTime)
+        {
+            _bg_rend.color = Color.Lerp(_bg_rend.color, new Color(0,0,0,0.6f), _time / _elapsedTime);
+
+            _time += Time.deltaTime;
+            yield return null;
+        }
+    }
+
+    public IEnumerator UnfocusBG()
+    {
+        float _time = 0;
+        float _elapsedTime = 1;
+
+        _bg_rend.color = new Color(0, 0, 0, 0.6f);
+        while (_time < _elapsedTime)
+        {
+            _bg_rend.color = Color.Lerp(_bg_rend.color, new Color(0, 0, 0, 0), _time / _elapsedTime);
+
+            _time += Time.deltaTime;
+            yield return null;
+        }
+
+        _bg_rend.gameObject.SetActive(false);
+
+    }
 
     public IEnumerator CutAnimation(Transform _target)
     {
@@ -85,70 +124,85 @@ public class Tutorial : ObjectInteractionBasement
     }
 
 }
-public class _Tutorial_Scenario_Fish : ITutorialScenario
+
+namespace TutorialScenarious
 {
-    public int _step = 0;
 
-    public IEnumerator Do(TutorialStep _sender)
+    public class _Tutorial_Scenario_Fish : ITutorialScenario
     {
-        _sender._target.OnInteractHandler += Interact;
+        public int _step = 0;
 
-        GameLogic.instance._spawner.DeActivate();
-
-        while (_step <= 5)
+        public IEnumerator Do(TutorialStep _sender)
         {
-            var cutAnim = _sender.GetTutorial.StartCoroutine(_sender.GetTutorial.CutAnimation(_sender._target.transform));
-            yield return cutAnim;
+            _sender._target.OnInteractHandler += Interact;
+
+            GameLogic.instance._object.DeActivate();
+            GameLogic.instance._spawner.DeActivate();
+
+            var bg = _sender.GetTutorial.StartCoroutine(_sender.GetTutorial.FocusBG());
+            yield return bg;
+
+            GameLogic.instance._object.Init();
+
+            while (_step <= 5)
+            {
+                var cutAnim = _sender.GetTutorial.StartCoroutine(_sender.GetTutorial.CutAnimation(_sender._target.transform));
+                yield return cutAnim;
+            }
+
+            Debug.Log("test");
+            GameLogic.instance._object.DeActivate();
+
+            _sender._target.OnInteractHandler -= Interact;
+            _sender.GetTutorial.Interact();
         }
 
-        Debug.Log("test");
-        GameLogic.instance._object.DeActivate();
-
-        _sender._target.OnInteractHandler -= Interact;
-        _sender.GetTutorial.Interact();
-    }
-
-    public void Interact()
-    {
-        _step++;
-        Debug.Log("HANDLER");
-    }
-}
-
-public class _Tutorial_Scenario_Enemy : ITutorialScenario
-{
-    public int _step = 0;
-
-    public IEnumerator Do(TutorialStep _sender)
-    {
-        //start spawning
-
-       
-        GameLogic.instance._spawner.Interact();
-        _sender._target = GameLogic.instance._spawner.GetCurrentEnemy();
-
-
-        _sender._target.OnInteractHandler += Interact;
-        while (Vector2.Distance(_sender._target.transform.position, _sender.GetTutorial._steps[0]._target.transform.position) > 3)
+        public void Interact()
         {
-            yield return null;
+            _step++;
+            Debug.Log("HANDLER");
         }
+    }
+
+    public class _Tutorial_Scenario_Enemy : ITutorialScenario
+    {
+        public int _step = 0;
+
+        public IEnumerator Do(TutorialStep _sender)
+        {
+            //start spawning
+
+            GameLogic.instance._spawner.Init();
+            GameLogic.instance._spawner.Interact();
+            GameLogic.instance._spawner.DeActivate();
+            _sender._target = GameLogic.instance._spawner.GetCurrentEnemy();
+
+
+            _sender._target.OnInteractHandler += Interact;
+            while (Vector2.Distance(_sender._target.transform.position, _sender.GetTutorial._steps[0]._target.transform.position) > 3)
+            {
+                yield return null;
+            }
             _sender._target.StopAllCoroutines();
 
 
-        while(_step == 0)
-        {
-            var cutAnim = _sender.GetTutorial.StartCoroutine(_sender.GetTutorial.CutAnimation(_sender._target.transform));
-            yield return cutAnim;
+            while (_step == 0)
+            {
+                var cutAnim = _sender.GetTutorial.StartCoroutine(_sender.GetTutorial.CutAnimation(_sender._target.transform));
+                yield return cutAnim;
+            }
+
+            var bg = _sender.GetTutorial.StartCoroutine(_sender.GetTutorial.UnfocusBG());
+            yield return bg;
+
+            GameLogic.instance._object.Init();
+            _sender._target.OnInteractHandler -= Interact;
+
         }
 
-        GameLogic.instance._object.Init();
-        _sender._target.OnInteractHandler -= Interact;
-
-    }
-
-    public void Interact()
-    {
-        _step++;
+        public void Interact()
+        {
+            _step++;
+        }
     }
 }

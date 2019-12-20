@@ -14,6 +14,7 @@ public class Knife : ObjectInteractionBasement
     {
         base.Init();
         _isOn = true;
+        _oldPos = transform.position;
         StartCoroutine(Follow());
     }
     public override void DeActivate()

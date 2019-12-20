@@ -62,6 +62,7 @@ public class GameLogic : MonoBehaviour
     public void Loose()
     {
         SwitchState(_GameState_DeathScreen);
+        _Score.ResetTotalScore();
     }
 
     public void Restart()

@@ -15,10 +15,7 @@ public class Spawner : ObjectInteractionBasement
     public override void Init()
     {
         base.Init();
-        if(_currentPrefab)
-        {
-            Destroy(_currentPrefab);
-        }
+        DeleteEnemy();
         _spawn = true;
         StartCoroutine(SpawnEnemys());
     }
@@ -26,16 +23,19 @@ public class Spawner : ObjectInteractionBasement
     //spawn enemys
     public override void Interact()
     {
-        base.Interact();
-        Debug.Log("spawned enemy");
-        GameObject obj = Instantiate(prefabs[Random.Range(0, prefabs.Length)]);
+        if (_spawn)
+        {
+            base.Interact();
+            Debug.Log("spawned enemy");
+            GameObject obj = Instantiate(prefabs[Random.Range(0, prefabs.Length)]);
 
-        obj.transform.position = GetPos();
-        EnemyInteractionBasement enemy = obj.GetComponent<EnemyInteractionBasement>();
+            obj.transform.position = GetPos();
+            EnemyInteractionBasement enemy = obj.GetComponent<EnemyInteractionBasement>();
 
-        enemy.Init(GameLogic.instance._object.transform, enemy.behaviour.BaseSpeed);
+            enemy.Init(GameLogic.instance._object.transform, enemy.behaviour.BaseSpeed);
 
-        _currentPrefab = obj;
+            _currentPrefab = obj;
+        }
     }
 
     public override void DeActivate()

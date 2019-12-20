@@ -13,6 +13,8 @@ public class GameCanvas : ObjectInteractionBasement
     public Text _Text_level;
     public Text _Text_nextlevel;
 
+    public ParticleSystem _WinParticles;
+
     [SerializeField]
     public bool _isOn;
 
@@ -54,6 +56,7 @@ public class GameCanvas : ObjectInteractionBasement
         _ScoreText.gameObject.SetActive(false);
         _TapToStartText.SetActive(false);
         _WinScreen.SetActive(true);
+        _WinParticles.Play();
     }
 
     public void UpdateScoreText(int score)
