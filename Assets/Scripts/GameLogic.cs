@@ -15,6 +15,7 @@ public class GameLogic : MonoBehaviour
     public GameCanvas _canvas;
     public Level _Level;
     public Tutorial _Tutorial;
+    public SkinController _Skins;
 
     public GameState _state;
 
@@ -147,13 +148,12 @@ public class GameState_FirstMenu : GameState
         _GameLogic._object.transform.rotation = Quaternion.Euler(0, 0, 0);
 
         _GameLogic._canvas.Init();
-
         _GameLogic._Bg.transform.position = new Vector2(0, 5);
 
         _GameLogic._Input.Tap.AddListener(WaitForTouch);
-
         _GameLogic._Level.Init();
 
+        _GameLogic._Skins.Init();
     }
 
     void WaitForTouch()

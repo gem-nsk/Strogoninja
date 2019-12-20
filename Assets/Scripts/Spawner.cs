@@ -4,13 +4,15 @@ using UnityEngine;
 
 
 
-public class Spawner : ObjectInteractionBasement
+public class Spawner : ObjectInteractionBasement, ISkinHolder
 {
     public GameObject[] prefabs;
     private GameObject _currentPrefab;
     public float StartDelay;
     public float Delay;
     private bool _spawn;
+
+    public SkinObject _EnemySkin;
 
     public override void Init()
     {
@@ -33,6 +35,7 @@ public class Spawner : ObjectInteractionBasement
             EnemyInteractionBasement enemy = obj.GetComponent<EnemyInteractionBasement>();
 
             enemy.Init(GameLogic.instance._object.transform, enemy.behaviour.BaseSpeed);
+            enemy.GetComponent<ISkinHolder>().SetSkinObject(_EnemySkin);
 
             _currentPrefab = obj;
         }
@@ -87,5 +90,16 @@ public class Spawner : ObjectInteractionBasement
     {
         var vector2 = Random.insideUnitCircle.normalized * radius;
         return new Vector3(vector2.x * 1.4f, vector2.y * 1.7f, 0);
+    }
+
+    public void SetSkinObject(SkinObject obj)
+    {
+        _EnemySkin = obj;
+        UpdateSkin();
+    }
+
+    public void UpdateSkin()
+    {
+
     }
 }

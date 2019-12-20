@@ -2,20 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectRotation : ObjectInteractionBasement
+public class ObjectRotation : ObjectInteractionBasement, ISkinHolder
 {
     public ParticleSystem _Particle;
     public Transform obj;
     public float Speed;
     private bool _IsOn;
 
-   public override void Init()
+    public SpriteRenderer _rend;
+    private SkinObject _skin;
+
+    public override void Init()
     {
-        if(!_IsOn)
+        if (!_IsOn)
         {
             _IsOn = true;
             _hitSpeed = 1;
             StartCoroutine(Rotate());
+
+            UpdateSkin();
         }
     }
 
@@ -64,6 +69,20 @@ public class ObjectRotation : ObjectInteractionBasement
             _hitSpeed += 0.5f;
             _Logic._Score.Add();
             _Logic._Music.PlayTargetCut();
+        }
+    }
+
+    public void SetSkinObject(SkinObject obj)
+    {
+        _skin = obj;
+        UpdateSkin();
+    }
+
+    public void UpdateSkin()
+    {
+        if(_skin != null)
+        {
+            _rend.sprite = _skin.GetSprite();
         }
     }
 }

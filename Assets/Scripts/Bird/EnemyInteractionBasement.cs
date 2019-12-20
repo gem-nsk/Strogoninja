@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyInteractionBasement : ObjectInteractionBasement
+public class EnemyInteractionBasement : ObjectInteractionBasement, ISkinHolder
 {
     public EnemyScriptableObject behaviour;
     public SpriteRenderer rend;
     public float _SpriteSheetSpeed;
+
 
     public override void Interact()
     {
@@ -65,5 +66,17 @@ public class EnemyInteractionBasement : ObjectInteractionBasement
                 yield return new WaitForSeconds(_SpriteSheetSpeed);
             }
         }
+    }
+
+    public void SetSkinObject(SkinObject obj)
+    {
+        for (int i = 0; i < obj.GetSprites().Length; i++)
+        {
+            behaviour.SpriteSheet[i] = obj.GetSprites()[i];
+        }
+    }
+
+    public void UpdateSkin()
+    {
     }
 }
