@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using Skin;
 
-[CreateAssetMenu(fileName = "New Enemy", menuName = "Skin/New Enemy Skin")]
-public class EnemySkinBehaviour : ScriptableObject
+[CreateAssetMenu(fileName = "new knife skin", menuName = "Skin/New Knife Skin")]
+public class SkinKnifeBehaviour : ScriptableObject
 {
-    public EnemySkin _data;
+    public KnifeSkin _data;
 
     public _Skin GetData()
     {

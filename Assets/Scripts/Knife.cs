@@ -1,14 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Skin;
 
-public class Knife : ObjectInteractionBasement
+public class Knife : ObjectInteractionBasement, ISkinHolder
 {
     private bool _isOn;
     private Vector3 _oldPos;
     public Collider2D _OldCollider;
     public LayerMask mask;
     public float _ThresholdDistance;
+    public TrailRenderer _rend;
+
+    private KnifeSkin _skin;
 
     public override void Init()
     {
@@ -96,6 +100,25 @@ public class Knife : ObjectInteractionBasement
             Gizmos.color = Color.red;
         Gizmos.DrawLine(_oldPos, transform.position);
         
+    }
+
+    public void SetSkinObject(_Skin obj)
+    {
+        SetSkinObject((KnifeSkin)obj);
+    }
+
+    public void SetSkinObject(KnifeSkin obj)
+    {
+        _skin = obj;
+        UpdateSkin();
+    }
+
+    public void UpdateSkin()
+    {
+        if (_skin != null)
+        {
+            _rend.colorGradient = _skin._KnifeColor;
+        }
     }
 
     //private void OnTriggerEnter2D(Collider2D collision)

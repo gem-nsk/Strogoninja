@@ -16,6 +16,7 @@ public class GameLogic : MonoBehaviour
     public Level _Level;
     public Tutorial _Tutorial;
     public SkinController _Skins;
+    public Shop _Shop;
 
     public GameState _state;
 
@@ -105,6 +106,16 @@ public class GameLogic : MonoBehaviour
             yield return null;
         }
     }
+
+    public void OnShop()
+    {
+        _state.OnShop();
+    }
+
+    public void OnBack()
+    {
+
+    }
 }
 
 public class GameState
@@ -120,11 +131,15 @@ public class GameState
     public virtual void Deactivate() { }
     public virtual void Share() { }
     public virtual void Restart() { }
+    public virtual void OnShop() { }
+    public virtual void OnBack() { }
 }
 
 public class GameState_FirstMenu : GameState
 {
     public GameState_FirstMenu(GameLogic gameLogic) : base(gameLogic) { }
+
+    private bool _InShop;
 
     public IEnumerator Init()
     {
@@ -186,6 +201,13 @@ public class GameState_FirstMenu : GameState
     {
         base.Deactivate();
     }
+
+    public override void OnShop()
+    {
+        base.OnShop();
+        _GameLogic._Shop.Init();
+        _InShop = true;
+    }
 }
 
 public class GameState_Menu : GameState
@@ -208,12 +230,15 @@ public class GameState_Menu : GameState
     public override void Deactivate()
     {
         base.Deactivate();
+
     }
 }
 
 public class GameState_InGame : GameState
 {
     public GameState_InGame(GameLogic gameLogic) : base(gameLogic) { }
+
+    private bool _InShop = false;
 
     public override void Activate()
     {
@@ -239,6 +264,23 @@ public class GameState_InGame : GameState
         _GameLogic._object.DeActivate();
         _GameLogic._Person.DeActivate();
         _GameLogic._knife.DeActivate();
+    }
+
+    public override void OnShop()
+    {
+        base.OnShop();
+        _GameLogic._Shop.Init();
+        _InShop = true;
+    }
+
+    public override void OnBack()
+    {
+        base.OnBack();
+        if (_InShop)
+        {
+            _GameLogic._Shop.DeActivate();
+            _InShop = false;
+        }
     }
 }
 

@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using Skin;
 
-[CreateAssetMenu(fileName = "New Skin", menuName = "New Skin")]
+[CreateAssetMenu(fileName = "New Object Skin", menuName = "Skin/New Object Skin")]
 public class SkinObjectBehaviour : ScriptableObject
 {
     public  ObjectSkin _Data;
 
-    public virtual _Skin GetData()
+    public _Skin GetData()
     {
         return _Data;
     }
