@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Skin;
 
 public class ObjectRotation : ObjectInteractionBasement, ISkinHolder
 {
@@ -10,7 +11,7 @@ public class ObjectRotation : ObjectInteractionBasement, ISkinHolder
     private bool _IsOn;
 
     public SpriteRenderer _rend;
-    private SkinObject _skin;
+    private ObjectSkin _skin;
 
     public override void Init()
     {
@@ -72,7 +73,7 @@ public class ObjectRotation : ObjectInteractionBasement, ISkinHolder
         }
     }
 
-    public void SetSkinObject(SkinObject obj)
+    public void SetSkinObject(ObjectSkin obj)
     {
         _skin = obj;
         UpdateSkin();
@@ -84,5 +85,10 @@ public class ObjectRotation : ObjectInteractionBasement, ISkinHolder
         {
             _rend.sprite = _skin.GetSprite();
         }
+    }
+
+    public void SetSkinObject(_Skin obj)
+    {
+        SetSkinObject((ObjectSkin)obj);
     }
 }

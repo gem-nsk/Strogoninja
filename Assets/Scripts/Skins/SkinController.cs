@@ -1,34 +1,50 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Skin;
 
-[System.Serializable]
-public class SkinObject
+namespace Skin
 {
-    public Sprite[] _Sprites;
-
-    public Sprite[] GetSprites()
+    [System.Serializable]
+    public class _Skin
     {
-        return _Sprites;
     }
 
-    public Sprite GetSprite()
+    [System.Serializable]
+    public class ObjectSkin : _Skin
     {
-        return _Sprites[0];
+        public Sprite[] _Sprites;
+
+        public Sprite[] GetSprites()
+        {
+            return _Sprites;
+        }
+
+        public Sprite GetSprite()
+        {
+            return _Sprites[0];
+        }
+
     }
-}
 
-public interface ISkinHolder
-{
-    void SetSkinObject(SkinObject obj);
-    void UpdateSkin();
-}
+    [System.Serializable]
+    public class EnemySkin : _Skin
+    {
+        public EnemyScriptableObject EnemyData;
+    }
 
-[System.Serializable]
-public class GameSkins
-{
-    public SkinObjectBehaviour[] _ObjectSkin;
-    public SkinObjectBehaviour[] _EnemySkin; 
+    public interface ISkinHolder
+    {
+        void SetSkinObject(_Skin obj);
+        void UpdateSkin();
+    }
+
+    [System.Serializable]
+    public class GameSkins
+    {
+        public SkinObjectBehaviour[] _ObjectSkin;
+        public EnemySkinBehaviour[] _EnemySkin;
+    }
 }
 
 public class SkinController : ObjectInteractionBasement
@@ -41,7 +57,7 @@ public class SkinController : ObjectInteractionBasement
     public override void Init()
     {
         base.Init();
-        _ObjectSkin.GetComponent<ISkinHolder>().SetSkinObject(_skinsBehaviour._ObjectSkin[0]._Data);
-        _EnemySkin.GetComponent<ISkinHolder>().SetSkinObject(_skinsBehaviour._EnemySkin[1]._Data);
+        _ObjectSkin.GetComponent<ISkinHolder>().SetSkinObject(_skinsBehaviour._ObjectSkin[0].GetData());
+        _EnemySkin.GetComponent<ISkinHolder>().SetSkinObject(_skinsBehaviour._EnemySkin[0].GetData());
     }
 }

@@ -10,7 +10,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9f87651e8b76f45d0932411cd8846499, type: 3}
-  m_Name: Enemy_2
+  m_Name: New Skin
   m_EditorClassIdentifier: 
-  _Data:
-    _Sprites: []

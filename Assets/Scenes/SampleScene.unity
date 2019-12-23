@@ -713,6 +713,7 @@ GameObject:
   m_Component:
   - component: {fileID: 566206300}
   - component: {fileID: 566206299}
+  - component: {fileID: 566206301}
   m_Layer: 0
   m_Name: GameLogic
   m_TagString: Untagged
@@ -743,6 +744,7 @@ MonoBehaviour:
   _canvas: {fileID: 899173394}
   _Level: {fileID: 235434794}
   _Tutorial: {fileID: 1145191852}
+  _Skins: {fileID: 566206301}
 --- !u!4 &566206300
 Transform:
   m_ObjectHideFlags: 0
@@ -760,6 +762,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &566206301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 566206298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea5b4839fe0dd4f2eb8388aa4b36db9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _ObjectSkin: {fileID: 2015521123}
+  _EnemySkin: {fileID: 1297840663}
+  _skinsBehaviour:
+    _ObjectSkin:
+    - {fileID: 11400000, guid: dac9491f7f8414d2c93d37b93bf4e00f, type: 2}
+    _EnemySkin:
+    - {fileID: 11400000, guid: 7d3f73f4da7c44cb8b8f2cdaf17ccc90, type: 2}
+    - {fileID: 0}
 --- !u!1 &579722826
 GameObject:
   m_ObjectHideFlags: 0
@@ -12008,6 +12030,8 @@ MonoBehaviour:
   - {fileID: 5160808152222234518, guid: f6bd2ef7e7a474140ba90bd11a5703dc, type: 3}
   StartDelay: 4
   Delay: 0.4
+  _EnemySkin:
+    EnemyData: {fileID: 0}
 --- !u!4 &1297840664
 Transform:
   m_ObjectHideFlags: 0
@@ -12463,7 +12487,8 @@ AudioSource:
   m_GameObject: {fileID: 1605909280}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 31401d0f193cd437382279e07e460d98,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -12563,7 +12588,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _MusicSource: {fileID: 1605909281}
-  MainMusic: {fileID: 8300000, guid: 742c1e97e671a864fb092a86a0c415bb, type: 3}
+  MainMusic: {fileID: 8300000, guid: 16fc14310bcb04e9ea8ed08345f27a08, type: 3}
   CutClip: {fileID: 8300000, guid: 65a65a9c585226f45922e241f6b3edcf, type: 3}
   DeathClip: {fileID: 8300000, guid: f05af26045213bf46953af9972d6ecd6, type: 3}
 --- !u!4 &1605909283
@@ -12965,7 +12990,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 6912897e53b08204abc84fcbad784433, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -12973,7 +12998,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &2015521122
@@ -13005,7 +13030,7 @@ MonoBehaviour:
   _Particle: {fileID: 972768191}
   obj: {fileID: 2015521122}
   Speed: -30
-  _rend: {fileID: 0}
+  _rend: {fileID: 2015521121}
 --- !u!50 &2015521124
 Rigidbody2D:
   serializedVersion: 4

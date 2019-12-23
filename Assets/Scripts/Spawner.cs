@@ -1,8 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-
+using Skin;
 
 public class Spawner : ObjectInteractionBasement, ISkinHolder
 {
@@ -12,7 +11,7 @@ public class Spawner : ObjectInteractionBasement, ISkinHolder
     public float Delay;
     private bool _spawn;
 
-    public SkinObject _EnemySkin;
+    public EnemySkin _EnemySkin;
 
     public override void Init()
     {
@@ -92,7 +91,7 @@ public class Spawner : ObjectInteractionBasement, ISkinHolder
         return new Vector3(vector2.x * 1.4f, vector2.y * 1.7f, 0);
     }
 
-    public void SetSkinObject(SkinObject obj)
+    public void SetSkinObject(EnemySkin obj)
     {
         _EnemySkin = obj;
         UpdateSkin();
@@ -101,5 +100,10 @@ public class Spawner : ObjectInteractionBasement, ISkinHolder
     public void UpdateSkin()
     {
 
+    }
+
+    public void SetSkinObject(_Skin obj)
+    {
+        SetSkinObject((EnemySkin)obj);
     }
 }

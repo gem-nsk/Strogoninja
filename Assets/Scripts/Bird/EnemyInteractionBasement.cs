@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Skin;
 
 public class EnemyInteractionBasement : ObjectInteractionBasement, ISkinHolder
 {
@@ -68,15 +69,20 @@ public class EnemyInteractionBasement : ObjectInteractionBasement, ISkinHolder
         }
     }
 
-    public void SetSkinObject(SkinObject obj)
+    public void SetSkinObject(EnemySkin obj)
     {
-        for (int i = 0; i < obj.GetSprites().Length; i++)
+        for (int i = 0; i < obj.EnemyData.SpriteSheet.Length; i++)
         {
-            behaviour.SpriteSheet[i] = obj.GetSprites()[i];
+            behaviour.SpriteSheet[i] = obj.EnemyData.SpriteSheet[i];
         }
     }
 
     public void UpdateSkin()
     {
+    }
+
+    public void SetSkinObject(_Skin obj)
+    {
+        SetSkinObject((EnemySkin)obj);
     }
 }
