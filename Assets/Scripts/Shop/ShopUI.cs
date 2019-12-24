@@ -10,6 +10,8 @@ public class ShopUI : ObjectInteractionBasement
 
     private bool _IsInited;
     public Button[] _Categories;
+    public GameObject _Prefab;
+    public Transform Conteiner;
 
     public override void Init()
     {
@@ -32,6 +34,7 @@ public class ShopUI : ObjectInteractionBasement
     {
         base.Interact();
         //update shop statements
+        _shop.ChangeCategory(_Skin._SkinType.Object);
     }
 
     private void SetButtonsCategories()
@@ -41,50 +44,67 @@ public class ShopUI : ObjectInteractionBasement
             switch (i)
             {
                 case 0:
-                    _Categories[i].onClick.AddListener(() => ChangeCategory(_Skin._SkinType.Object));
+                    _Categories[i].onClick.AddListener(() => _shop.ChangeCategory(_Skin._SkinType.Object));
                     break;
                 case 1:
-                    _Categories[i].onClick.AddListener(() => ChangeCategory(_Skin._SkinType.Enemy));
+                    _Categories[i].onClick.AddListener(() => _shop.ChangeCategory(_Skin._SkinType.Enemy));
                     break;
                 case 2:
-                    _Categories[i].onClick.AddListener(() => ChangeCategory(_Skin._SkinType.Knife));
+                    _Categories[i].onClick.AddListener(() => _shop.ChangeCategory(_Skin._SkinType.Knife));
                     break;
             }
         }
     }
 
-    public void ChangeCategory(_Skin._SkinType type)
+    ShopElement CreateShopElement()
     {
-        switch (type)
+        GameObject obj = Instantiate(_Prefab, Conteiner);
+        return obj.GetComponent<ShopElement>();
+    }
+
+    public void FillGrid(_Skin._SkinType _type)
+    {
+        switch (_type)
         {
             case _Skin._SkinType.Enemy:
-                Debug.Log("Switched to enemy");
-                LoadCategory(_Logic._Skins._skinsBehaviour._EnemySkin);
+
+                foreach(EnemySkin skin in _shop._CurrentSkins)
+                {
+                    CreateShopElement().Setup(false, skin._Price, new Color(1,1,1,1), skin.EnemyData.SpriteSheet[0]);
+                }
+
                 break;
 
             case _Skin._SkinType.Knife:
-                Debug.Log("Switched to knife");
-                LoadCategory(_Logic._Skins._skinsBehaviour._KnifeSkin);
+
+                foreach (KnifeSkin skin in _shop._CurrentSkins)
+                {
+                    CreateShopElement().Setup(false, skin._Price, skin._KnifeColor.Evaluate(0));
+                }
+
                 break;
 
             case _Skin._SkinType.Object:
-                Debug.Log("Switched to object");
-                LoadCategory(_Logic._Skins._skinsBehaviour._ObjectSkin);
+
+                foreach(ObjectSkin skin in _shop._CurrentSkins)
+                {
+                    CreateShopElement().Setup(false, skin._Price, new Color(1,1,1,1), skin._Sprites[0]);
+                }
+
                 break;
         }
     }
 
-    
-    void LoadCategory(EnemySkinBehaviour[] _id)
+    public void ClearShop()
     {
-        Debug.Log(_id.Length);
+        foreach (Transform child in Conteiner.transform)
+        {
+            Destroy(child.gameObject);
+        }
     }
-    void LoadCategory(SkinObjectBehaviour[] _id)
+
+    public void ElementInteract(ShopElement _element)
     {
-        Debug.Log(_id.Length);
-    }
-    void LoadCategory(SkinKnifeBehaviour[] _id)
-    {
-        Debug.Log(_id.Length);
+
     }
 }

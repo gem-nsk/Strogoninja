@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Enemy_1
   m_EditorClassIdentifier: 
   _data:
-    _Price: 0
+    _Price: 10
     EnemyData: {fileID: 11400000, guid: 66970b8d4cf8a5e4cb3e6128d11b5428, type: 2}
