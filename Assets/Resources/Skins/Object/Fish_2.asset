@@ -14,5 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _Data:
     _Price: 40
+    type: 0
     _Sprites:
-    - {fileID: 0}
+    - {fileID: 6680342502876481257, guid: dddfbabcb4fe74ad2bc6ebaa9f041fbf, type: 3}
+    _ActionParticles: {fileID: 3189520467892204840, guid: 8e8162a93e4be4cb68c79691cebaae0f,
+      type: 3}

@@ -9,10 +9,12 @@ public class ShopElement : ObjectInteractionBasement
     public Text _Price_text;
     public GameObject _Price_bg;
     public Image _Object_Icon;
+    public Skin._Skin _skin { get; private set; }
 
-    
-    public void Setup(bool isPurchased, int _price, Color _color, Sprite _icon = null)
+
+    public void Setup(Skin._Skin _skin, bool isPurchased, int _price, Color _color, Sprite _icon = null)
     {
+        this._skin = _skin;
         if (isPurchased)
         {
             _Price_bg.SetActive(false);

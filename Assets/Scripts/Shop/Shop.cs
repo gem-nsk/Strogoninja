@@ -88,6 +88,6 @@ public class Shop : ObjectInteractionBasement
 
     public void InteractWithElement(ShopElement _element)
     {
-
+        _Logic._Skins.SetSkin(_element._skin);
     }
 }

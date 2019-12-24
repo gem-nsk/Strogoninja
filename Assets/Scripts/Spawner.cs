@@ -33,7 +33,7 @@ public class Spawner : ObjectInteractionBasement, ISkinHolder
             obj.transform.position = GetPos();
             EnemyInteractionBasement enemy = obj.GetComponent<EnemyInteractionBasement>();
 
-            enemy.Init(GameLogic.instance._object.transform, enemy.behaviour.BaseSpeed);
+            enemy.Init(GameLogic.instance._object.transform, _EnemySkin.EnemyData.BaseSpeed);
             enemy.GetComponent<ISkinHolder>().SetSkinObject(_EnemySkin);
 
             _currentPrefab = obj;

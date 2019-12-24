@@ -13,5 +13,9 @@ MonoBehaviour:
   m_Name: Fish_3
   m_EditorClassIdentifier: 
   _Data:
-    _Price: 0
-    _Sprites: []
+    _Price: 100
+    type: 0
+    _Sprites:
+    - {fileID: -295074275853202536, guid: 0747e4485989e416c8f1ec3bd56bb169, type: 3}
+    _ActionParticles: {fileID: 4779030148496562584, guid: 4719b95d40e18453d867728410dd001c,
+      type: 3}

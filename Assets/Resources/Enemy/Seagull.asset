@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: edcbd5c68fe88d64c8f6a7d089bc0e88, type: 3}
-  m_Name: Crow
+  m_Name: Seagull
   m_EditorClassIdentifier: 
   SpriteSheet:
-  - {fileID: 21300000, guid: 83bb736d3ebee424e80ecf01dee11e37, type: 3}
-  - {fileID: 21300000, guid: 171eb57aaf86fb94cb217d6489fdd4a6, type: 3}
-  DeathParticles: {fileID: 8177641925900819882, guid: d8d4f2f99f492c74bbc5508f366c569d,
+  - {fileID: -4406349488670853555, guid: 6e3dbf748cb264c76ad877b47f6847e2, type: 3}
+  - {fileID: 1966655184685947929, guid: 341bbcd2c29de458fa08bfd0fe06b3c8, type: 3}
+  DeathParticles: {fileID: 8177641925900819882, guid: a773816b4fc60409e907a98500fdbd27,
     type: 3}
   BaseSpeed: 1
   MovingCurve:

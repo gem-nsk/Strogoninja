@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _data:
     _Price: 20
+    type: 2
     _KnifeColor:
       serializedVersion: 2
       key0: {r: 0.02800417, g: 0, b: 1, a: 1}

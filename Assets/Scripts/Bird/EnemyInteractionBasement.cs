@@ -5,7 +5,7 @@ using Skin;
 
 public class EnemyInteractionBasement : ObjectInteractionBasement, ISkinHolder
 {
-    public EnemyScriptableObject behaviour;
+    public EnemySkin behaviour;
     public SpriteRenderer rend;
     public float _SpriteSheetSpeed;
 
@@ -61,7 +61,7 @@ public class EnemyInteractionBasement : ObjectInteractionBasement, ISkinHolder
     {
         while(true)
         {
-            foreach(Sprite _sprite in behaviour.SpriteSheet)
+            foreach(Sprite _sprite in _Logic._spawner._EnemySkin.EnemyData.SpriteSheet)
             {
                 rend.sprite = _sprite;
                 yield return new WaitForSeconds(_SpriteSheetSpeed);
@@ -71,10 +71,7 @@ public class EnemyInteractionBasement : ObjectInteractionBasement, ISkinHolder
 
     public void SetSkinObject(EnemySkin obj)
     {
-        for (int i = 0; i < obj.EnemyData.SpriteSheet.Length; i++)
-        {
-            behaviour.SpriteSheet[i] = obj.EnemyData.SpriteSheet[i];
-        }
+        behaviour = obj;
     }
 
     public void UpdateSkin()

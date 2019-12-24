@@ -109,12 +109,12 @@ public class GameLogic : MonoBehaviour
 
     public void OnShop()
     {
-        _state.OnShop();
+        _Shop.Init();
     }
 
     public void OnBack()
     {
-
+        _Shop.DeActivate();
     }
 }
 
@@ -208,6 +208,12 @@ public class GameState_FirstMenu : GameState
         _GameLogic._Shop.Init();
         _InShop = true;
     }
+    public override void OnBack()
+    {
+        base.OnBack();
+        _GameLogic._Shop.DeActivate();
+        _InShop = false;
+    }
 }
 
 public class GameState_Menu : GameState
@@ -269,6 +275,7 @@ public class GameState_InGame : GameState
     public override void OnShop()
     {
         base.OnShop();
+        Time.timeScale = 0;
         _GameLogic._Shop.Init();
         _InShop = true;
     }
@@ -276,11 +283,9 @@ public class GameState_InGame : GameState
     public override void OnBack()
     {
         base.OnBack();
-        if (_InShop)
-        {
-            _GameLogic._Shop.DeActivate();
-            _InShop = false;
-        }
+        Time.timeScale = 1;
+        _GameLogic._Shop.DeActivate();
+        _InShop = false;
     }
 }
 

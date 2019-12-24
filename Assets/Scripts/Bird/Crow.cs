@@ -7,7 +7,7 @@ public class Crow : EnemyInteractionBasement
     public override void Death()
     {
         base.Death();
-        Transform obj = Instantiate(behaviour.DeathParticles).transform;
+        Transform obj = Instantiate(behaviour.EnemyData.DeathParticles).transform;
         obj.position = new Vector3(transform.position.x, transform.position.y, -3);
         
         Destroy(gameObject);

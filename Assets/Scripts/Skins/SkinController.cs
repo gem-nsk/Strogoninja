@@ -10,6 +10,7 @@ namespace Skin
     {
         [Header("Shop settings")]
         public int _Price;
+        public _SkinType type;
         public enum _SkinType
         {
             Object = 0,
@@ -25,6 +26,7 @@ namespace Skin
         [Header("Object Setting")]
         [Space(10)]
         public Sprite[] _Sprites;
+        public ParticleSystem _ActionParticles;
 
         public Sprite[] GetSprites()
         {
@@ -84,5 +86,23 @@ public class SkinController : ObjectInteractionBasement
         _ObjectSkin.GetComponent<ISkinHolder>().SetSkinObject(_skinsBehaviour._ObjectSkin[0].GetData());
         _EnemySkin.GetComponent<ISkinHolder>().SetSkinObject(_skinsBehaviour._EnemySkin[0].GetData());
         _KnifeSkin.GetComponent<ISkinHolder>().SetSkinObject(_skinsBehaviour._KnifeSkin[0].GetData());
+    }
+
+    public void SetSkin(_Skin skin)
+    {
+        switch (skin.type)
+        {
+            case _Skin._SkinType.Enemy:
+                _EnemySkin.GetComponent<ISkinHolder>().SetSkinObject(skin);
+                break;
+
+            case _Skin._SkinType.Knife:
+                _KnifeSkin.GetComponent<ISkinHolder>().SetSkinObject(skin);
+                break;
+
+            case _Skin._SkinType.Object:
+                _ObjectSkin.GetComponent<ISkinHolder>().SetSkinObject(skin);
+                break;
+        }
     }
 }

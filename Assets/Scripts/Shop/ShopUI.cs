@@ -70,7 +70,7 @@ public class ShopUI : ObjectInteractionBasement
 
                 foreach(EnemySkin skin in _shop._CurrentSkins)
                 {
-                    CreateShopElement().Setup(false, skin._Price, new Color(1,1,1,1), skin.EnemyData.SpriteSheet[0]);
+                    CreateShopElement().Setup(skin, false, skin._Price, new Color(1,1,1,1), skin.EnemyData.SpriteSheet[0]);
                 }
 
                 break;
@@ -79,7 +79,7 @@ public class ShopUI : ObjectInteractionBasement
 
                 foreach (KnifeSkin skin in _shop._CurrentSkins)
                 {
-                    CreateShopElement().Setup(false, skin._Price, skin._KnifeColor.Evaluate(0));
+                    CreateShopElement().Setup(skin, false, skin._Price, skin._KnifeColor.Evaluate(0));
                 }
 
                 break;
@@ -88,7 +88,7 @@ public class ShopUI : ObjectInteractionBasement
 
                 foreach(ObjectSkin skin in _shop._CurrentSkins)
                 {
-                    CreateShopElement().Setup(false, skin._Price, new Color(1,1,1,1), skin._Sprites[0]);
+                    CreateShopElement().Setup(skin, false, skin._Price, new Color(1,1,1,1), skin._Sprites[0]);
                 }
 
                 break;
@@ -105,6 +105,12 @@ public class ShopUI : ObjectInteractionBasement
 
     public void ElementInteract(ShopElement _element)
     {
+        _shop.InteractWithElement(_element);
+    }
+
+    public override void DeActivate()
+    {
+        base.DeActivate();
 
     }
 }

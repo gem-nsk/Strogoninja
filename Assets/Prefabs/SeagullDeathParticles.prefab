@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3584336417532092667}
   - component: {fileID: 1907285910201760985}
   m_Layer: 0
-  m_Name: CrowDeathParticles
+  m_Name: SeagullDeathParticles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4768,7 +4768,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 586126d5ccfede84799f9ad9f1bf51d0, type: 2}
+  - {fileID: 2100000, guid: 40e62e824e48f4d4ba0d1b78319f55bf, type: 2}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -4823,7 +4823,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: f3064181962124536980388ddadb4631, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 7d7c8ed0e02f241869b4109549811270, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1

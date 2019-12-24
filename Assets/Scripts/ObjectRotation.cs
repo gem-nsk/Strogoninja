@@ -22,6 +22,8 @@ public class ObjectRotation : ObjectInteractionBasement, ISkinHolder
             StartCoroutine(Rotate());
 
             UpdateSkin();
+
+           
         }
     }
 
@@ -84,7 +86,15 @@ public class ObjectRotation : ObjectInteractionBasement, ISkinHolder
         if(_skin != null)
         {
             _rend.sprite = _skin.GetSprite();
+            if (_Particle != null)
+            {
+                Destroy(_Particle.gameObject);
+            }
+            GameObject particles = Instantiate(_skin._ActionParticles).gameObject;
+            _Particle = particles.GetComponent<ParticleSystem>();
+            _Particle.transform.position = new Vector3(0, 0, -2);
         }
+
     }
 
     public void SetSkinObject(_Skin obj)
