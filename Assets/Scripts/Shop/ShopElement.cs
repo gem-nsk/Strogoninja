@@ -9,6 +9,8 @@ public class ShopElement : ObjectInteractionBasement
     public Text _Price_text;
     public GameObject _Price_bg;
     public Image _Object_Icon;
+    public Image _SelectedImage;
+
     public Skin._Skin _skin { get; private set; }
 
 
@@ -34,6 +36,17 @@ public class ShopElement : ObjectInteractionBasement
             _Object_Icon.color = new Color(1, 1, 1, 1);
             _Object_Icon.sprite = _icon;
         }
+    }
+
+    public void SetFocused()
+    {
+        _SelectedImage.gameObject.SetActive(true);
+        _Price_bg.SetActive(false);
+    }
+
+    public void UnFocused()
+    {
+        _SelectedImage.gameObject.SetActive(false);
     }
 
     public override void Interact()

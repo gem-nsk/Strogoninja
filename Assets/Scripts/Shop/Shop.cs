@@ -5,6 +5,11 @@ using Skin;
 
 public class Shop : ObjectInteractionBasement
 {
+    public enum _ElementType
+    {
+        Unlocked,
+        Blocked
+    }
 
     public ShopUI _ui;
     public SkinController _skins { get { return _Logic._Skins; } }
@@ -88,6 +93,51 @@ public class Shop : ObjectInteractionBasement
 
     public void InteractWithElement(ShopElement _element)
     {
-        _Logic._Skins.SetSkin(_element._skin);
+        Debug.Log("ui_interactWithElement");
+        switch (CheckForBuying(_element))
+        {
+            case _ElementType.Unlocked:
+                Debug.Log("case unlocked");
+                _Logic._Skins.SetSkin(_element._skin);
+                _ui.SetFocusedElement(_element);
+                break;
+
+            case _ElementType.Blocked:
+                Debug.Log("case blocked");
+
+                if (BuyElement(_element))
+                {
+                    _Logic._Skins.SetSkin(_element._skin);
+                    _ui.SetFocusedElement(_element);
+                }
+                break;
+        }
+    }
+
+    public _ElementType CheckForBuying(ShopElement _element)
+    {
+        //if already unlocked
+        if (_element._skin._Unlocked)
+        {
+            return _ElementType.Unlocked;
+        }
+        //check for price
+        else
+        {
+            return _ElementType.Blocked;
+        }
+    }
+
+    public bool BuyElement(ShopElement _element)
+    {
+        if(_Logic._Score._Coins >= _element._skin._Price)
+        {
+            Debug.Log("Buy!");
+            _Logic._Score.AddCoins(-_element._skin._Price);
+            _element._skin._Unlocked = true;
+
+            return true;
+        }
+        else { return false; }
     }
 }

@@ -10,6 +10,7 @@ namespace Skin
     {
         [Header("Shop settings")]
         public int _Price;
+        public bool _Unlocked;
         public _SkinType type;
         public enum _SkinType
         {

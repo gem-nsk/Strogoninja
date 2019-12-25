@@ -17,6 +17,7 @@ public class GameLogic : MonoBehaviour
     public Tutorial _Tutorial;
     public SkinController _Skins;
     public Shop _Shop;
+    public AIPlayer _AI;
 
     public GameState _state;
 
@@ -87,6 +88,10 @@ public class GameLogic : MonoBehaviour
         _canvas.WinScreen();
         _spawner.DeActivate();
         _spawner.DeleteEnemy();
+        _Score.ApplyTempCoins();
+
+        //saving
+        _Score.Interact();
         Debug.Log("Win");
 
     }
@@ -261,6 +266,7 @@ public class GameState_InGame : GameState
         _GameLogic._Music.PlayGameMusic();
 
         _GameLogic._Tutorial.Init();
+
     }
 
     public override void Deactivate()
@@ -270,6 +276,7 @@ public class GameState_InGame : GameState
         _GameLogic._object.DeActivate();
         _GameLogic._Person.DeActivate();
         _GameLogic._knife.DeActivate();
+
     }
 
     public override void OnShop()

@@ -5,8 +5,9 @@ using UnityEngine.UI;
 
 public class Score : ObjectInteractionBasement
 {
-   
 
+    private const string _HS_KEY = "hs";
+    private const string _COINS_KEY = "_coins";
     public delegate void AddScore(int score);
     public static AddScore AddScoreHandler;
 
@@ -32,14 +33,16 @@ public class Score : ObjectInteractionBasement
 
     public int _highscore;
 
+    public int _Coins;
+    public int _TempCoins;
+
 
     public override void Init()
     {
         if(PlayerPrefs.HasKey("hs"))
-        _highscore = PlayerPrefs.GetInt("hs");
+        _highscore = PlayerPrefs.GetInt(_HS_KEY, 0);
+        _Coins = PlayerPrefs.GetInt(_COINS_KEY, 0);
     }
-
-
 
     public void ResetScore()
     {
@@ -50,13 +53,15 @@ public class Score : ObjectInteractionBasement
     public void ResetTotalScore()
     {
         _totalScore = 0;
+        _TempCoins = 0;
     }
 
     public override void Interact()
     {
         base.Interact();
-        PlayerPrefs.SetInt("hs", _highscore);
-        Debug.Log("Saved hs : " + _highscore);
+        PlayerPrefs.SetInt(_HS_KEY, _highscore);
+        Debug.Log(_Coins);
+        PlayerPrefs.SetInt(_COINS_KEY, _Coins);
     }
 
     public void AddLevelPoints()
@@ -72,5 +77,22 @@ public class Score : ObjectInteractionBasement
         AddScoreHandler(_Score);
 
         _Logic.CheckScore(_Score);
+    }
+
+    public void AddCoins(int count)
+    {
+        _Coins += count;
+        PlayerPrefs.SetInt(_COINS_KEY, _Coins);
+    }
+
+    public void AddTempCoins(int count)
+    {
+        _TempCoins += count;
+    }
+
+    public void ApplyTempCoins()
+    {
+        AddCoins(_TempCoins);
+        _TempCoins = 0;
     }
 }

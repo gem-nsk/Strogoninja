@@ -6,6 +6,7 @@ using Skin;
 public class Knife : ObjectInteractionBasement, ISkinHolder
 {
     private bool _isOn;
+    private bool _TrackMousePos = true;
     private Vector3 _oldPos;
     public Collider2D _OldCollider;
     public LayerMask mask;
@@ -21,6 +22,7 @@ public class Knife : ObjectInteractionBasement, ISkinHolder
         _oldPos = transform.position;
         StartCoroutine(Follow());
     }
+
     public override void DeActivate()
     {
         base.DeActivate();
@@ -28,19 +30,31 @@ public class Knife : ObjectInteractionBasement, ISkinHolder
         _isOn = false;
     }
 
+    public void UntrackMouse()
+    {
+        _TrackMousePos = false;
+    }
+
+    public void TrackMouse()
+    {
+        _TrackMousePos = true;
+    }
+
     IEnumerator Follow()
     {
         while(_isOn)
         {
-            //set knife postion
-            transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 5));
-
-            if(Input.touchCount > 0)
+            if (_TrackMousePos)
             {
-                Touch t = Input.GetTouch(0);
-                transform.position = Camera.main.ScreenToWorldPoint(new Vector3(t.position.x, t.position.y, 5));
-            }
+                //set knife postion
+                transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 5));
 
+                if (Input.touchCount > 0)
+                {
+                    Touch t = Input.GetTouch(0);
+                    transform.position = Camera.main.ScreenToWorldPoint(new Vector3(t.position.x, t.position.y, 5));
+                }
+            }
 
             //check with previous position
             if (isPosChanged(_oldPos, transform.position))
@@ -98,8 +112,39 @@ public class Knife : ObjectInteractionBasement, ISkinHolder
     {
         
             Gizmos.color = Color.red;
-        Gizmos.DrawLine(_oldPos, transform.position);
+        DrawLine(_oldPos, transform.position, 8);
         
+    }
+
+    public static void DrawLine(Vector3 p1, Vector3 p2, float width)
+    {
+        int count = 1 + Mathf.CeilToInt(width); // how many lines are needed.
+        if (count == 1)
+        {
+            Gizmos.DrawLine(p1, p2);
+        }
+        else
+        {
+            Camera c = Camera.current;
+            if (c == null)
+            {
+                Debug.LogError("Camera.current is null");
+                return;
+            }
+            var scp1 = c.WorldToScreenPoint(p1);
+            var scp2 = c.WorldToScreenPoint(p2);
+
+            Vector3 v1 = (scp2 - scp1).normalized; // line direction
+            Vector3 n = Vector3.Cross(v1, Vector3.forward); // normal vector
+
+            for (int i = 0; i < count; i++)
+            {
+                Vector3 o = 0.99f * n * width * ((float)i / (count - 1) - 0.5f);
+                Vector3 origin = c.ScreenToWorldPoint(scp1 + o);
+                Vector3 destiny = c.ScreenToWorldPoint(scp2 + o);
+                Gizmos.DrawLine(origin, destiny);
+            }
+        }
     }
 
     public void SetSkinObject(_Skin obj)

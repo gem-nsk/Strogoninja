@@ -12,6 +12,9 @@ public class ShopUI : ObjectInteractionBasement
     public Button[] _Categories;
     public GameObject _Prefab;
     public Transform Conteiner;
+    public Text _CoinsText;
+
+    private List<ShopElement> _currentElemets = new List<ShopElement>();
 
     public override void Init()
     {
@@ -35,6 +38,7 @@ public class ShopUI : ObjectInteractionBasement
         base.Interact();
         //update shop statements
         _shop.ChangeCategory(_Skin._SkinType.Object);
+        UpdateCoinsText();
     }
 
     private void SetButtonsCategories()
@@ -59,18 +63,20 @@ public class ShopUI : ObjectInteractionBasement
     ShopElement CreateShopElement()
     {
         GameObject obj = Instantiate(_Prefab, Conteiner);
+        _currentElemets.Add(obj.GetComponent<ShopElement>());
         return obj.GetComponent<ShopElement>();
     }
 
     public void FillGrid(_Skin._SkinType _type)
     {
+        _currentElemets.Clear();
         switch (_type)
         {
             case _Skin._SkinType.Enemy:
 
                 foreach(EnemySkin skin in _shop._CurrentSkins)
                 {
-                    CreateShopElement().Setup(skin, false, skin._Price, new Color(1,1,1,1), skin.EnemyData.SpriteSheet[0]);
+                    CreateShopElement().Setup(skin, skin._Unlocked, skin._Price, new Color(1,1,1,1), skin.EnemyData.SpriteSheet[0]);
                 }
 
                 break;
@@ -79,7 +85,7 @@ public class ShopUI : ObjectInteractionBasement
 
                 foreach (KnifeSkin skin in _shop._CurrentSkins)
                 {
-                    CreateShopElement().Setup(skin, false, skin._Price, skin._KnifeColor.Evaluate(0));
+                    CreateShopElement().Setup(skin, skin._Unlocked, skin._Price, skin._KnifeColor.Evaluate(0));
                 }
 
                 break;
@@ -88,7 +94,7 @@ public class ShopUI : ObjectInteractionBasement
 
                 foreach(ObjectSkin skin in _shop._CurrentSkins)
                 {
-                    CreateShopElement().Setup(skin, false, skin._Price, new Color(1,1,1,1), skin._Sprites[0]);
+                    CreateShopElement().Setup(skin, skin._Unlocked, skin._Price, new Color(1,1,1,1), skin._Sprites[0]);
                 }
 
                 break;
@@ -106,11 +112,26 @@ public class ShopUI : ObjectInteractionBasement
     public void ElementInteract(ShopElement _element)
     {
         _shop.InteractWithElement(_element);
+        UpdateCoinsText();
+    }
+
+    public void SetFocusedElement(ShopElement _element)
+    {
+        foreach(ShopElement el in _currentElemets)
+        {
+            el.UnFocused();
+        }
+        _element.SetFocused();
     }
 
     public override void DeActivate()
     {
         base.DeActivate();
 
+    }
+
+    private void UpdateCoinsText()
+    {
+        _CoinsText.text = _Logic._Score._Coins + "";
     }
 }
