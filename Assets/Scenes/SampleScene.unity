@@ -552,6 +552,99 @@ MonoBehaviour:
     _TargetPoints: 0
     _StartPenalty: 0
   _Pattern: {fileID: 11400000, guid: 65e5028517c4a458b982fe1a54e4092c, type: 2}
+--- !u!1 &392258818
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 392258821}
+  - component: {fileID: 392258820}
+  - component: {fileID: 392258819}
+  - component: {fileID: 392258822}
+  m_Layer: 5
+  m_Name: CoinsText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &392258819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 392258818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 0.9398438, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 5d2d2d875f6315e45b763227b7bbf4c0, type: 3}
+    m_FontSize: 55
+    m_FontStyle: 0
+    m_BestFit: 1
+    m_MinSize: 10
+    m_MaxSize: 87
+    m_Alignment: 5
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 3453
+--- !u!222 &392258820
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 392258818}
+  m_CullTransparentMesh: 0
+--- !u!224 &392258821
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 392258818}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1642220020}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -381.45, y: -98.70001}
+  m_SizeDelta: {x: 316.7, y: 100.8}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &392258822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 392258818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 1, g: 0.6255318, b: 0, a: 0.5}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!1 &431538494
 GameObject:
   m_ObjectHideFlags: 0
@@ -845,7 +938,6 @@ GameObject:
   - component: {fileID: 566206300}
   - component: {fileID: 566206299}
   - component: {fileID: 566206301}
-  - component: {fileID: 566206302}
   m_Layer: 0
   m_Name: GameLogic
   m_TagString: Untagged
@@ -878,7 +970,7 @@ MonoBehaviour:
   _Tutorial: {fileID: 1145191852}
   _Skins: {fileID: 566206301}
   _Shop: {fileID: 1355972925}
-  _AI: {fileID: 566206302}
+  _AI: {fileID: 0}
 --- !u!4 &566206300
 Transform:
   m_ObjectHideFlags: 0
@@ -923,19 +1015,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 224be211f7f5f4ac79068f23e26932c9, type: 2}
     _KnifeSkin:
     - {fileID: 11400000, guid: 8fa7152bd830649f5838afc5772a630d, type: 2}
---- !u!114 &566206302
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 566206298}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fdc32351f396c42198b4e8ff52db1da0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Active: 1
+    - {fileID: 11400000, guid: 884585a9704d34cec96acc52231125b7, type: 2}
 --- !u!1 &579722826
 GameObject:
   m_ObjectHideFlags: 0
@@ -7887,6 +7967,7 @@ MonoBehaviour:
   Delay: 0.4
   _EnemySkin:
     _Price: 0
+    _Unlocked: 0
     type: 0
     EnemyData: {fileID: 0}
 --- !u!4 &1297840664
@@ -8935,6 +9016,7 @@ RectTransform:
   - {fileID: 1544727192}
   - {fileID: 2004413876}
   - {fileID: 1821623532}
+  - {fileID: 392258821}
   m_Father: {fileID: 899173393}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8961,6 +9043,7 @@ MonoBehaviour:
   - {fileID: 2004413877}
   _Prefab: {fileID: 2164693870012149530, guid: 1b3176d1847c843328e79a71f4159528, type: 3}
   Conteiner: {fileID: 1625091872}
+  _CoinsText: {fileID: 392258819}
 --- !u!114 &1642220022
 MonoBehaviour:
   m_ObjectHideFlags: 0

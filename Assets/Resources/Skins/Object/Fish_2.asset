@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _Data:
     _Price: 40
+    _Unlocked: 0
     type: 0
     _Sprites:
     - {fileID: 6680342502876481257, guid: dddfbabcb4fe74ad2bc6ebaa9f041fbf, type: 3}

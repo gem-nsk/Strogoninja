@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Enemy_3
   m_EditorClassIdentifier: 
   _data:
-    _Price: 0
+    _Price: 50
+    _Unlocked: 0
     type: 1
     EnemyData: {fileID: 11400000, guid: 2dd4873d23cbe487fb019adba429d510, type: 2}

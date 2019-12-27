@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Fish_1
   m_EditorClassIdentifier: 
   _Data:
-    _Price: 30
+    _Price: 0
+    _Unlocked: 1
     type: 0
     _Sprites:
     - {fileID: 8966945178157639174, guid: 6912897e53b08204abc84fcbad784433, type: 3}
