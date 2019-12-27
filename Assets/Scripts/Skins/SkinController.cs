@@ -62,6 +62,7 @@ namespace Skin
     {
         void SetSkinObject(_Skin obj);
         void UpdateSkin();
+        _Skin GetSkin();
     }
 
     [System.Serializable]
@@ -105,5 +106,20 @@ public class SkinController : ObjectInteractionBasement
                 _ObjectSkin.GetComponent<ISkinHolder>().SetSkinObject(skin);
                 break;
         }
+    }
+
+    public ObjectSkin GetObjectSkin()
+    {
+        return (ObjectSkin)_ObjectSkin.GetComponent<ISkinHolder>().GetSkin();
+    }
+
+    public EnemySkin GetEnemySkin()
+    {
+        return (EnemySkin)_EnemySkin.GetComponent<ISkinHolder>().GetSkin();
+    }
+
+    public KnifeSkin GetKnifeSkin()
+    {
+        return (KnifeSkin)_KnifeSkin.GetComponent<ISkinHolder>().GetSkin();
     }
 }

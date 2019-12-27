@@ -78,6 +78,7 @@ public class ShopUI : ObjectInteractionBasement
                 {
                     CreateShopElement().Setup(skin, skin._Unlocked, skin._Price, new Color(1,1,1,1), skin.EnemyData.SpriteSheet[0]);
                 }
+                SetFocusedElement(_shop._skins.GetEnemySkin());
 
                 break;
 
@@ -88,6 +89,8 @@ public class ShopUI : ObjectInteractionBasement
                     CreateShopElement().Setup(skin, skin._Unlocked, skin._Price, skin._KnifeColor.Evaluate(0));
                 }
 
+                SetFocusedElement(_shop._skins.GetKnifeSkin());
+
                 break;
 
             case _Skin._SkinType.Object:
@@ -96,6 +99,7 @@ public class ShopUI : ObjectInteractionBasement
                 {
                     CreateShopElement().Setup(skin, skin._Unlocked, skin._Price, new Color(1,1,1,1), skin._Sprites[0]);
                 }
+                SetFocusedElement(_shop._skins.GetObjectSkin());
 
                 break;
         }
@@ -122,6 +126,22 @@ public class ShopUI : ObjectInteractionBasement
             el.UnFocused();
         }
         _element.SetFocused();
+    }
+
+    public void SetFocusedElement(_Skin _skin)
+    {
+        foreach (ShopElement el in _currentElemets)
+        {
+            if (el._skin == _skin)
+            {
+                el.SetFocused();
+            }
+            else
+            {
+                el.UnFocused();
+            }
+        }
+       
     }
 
     public override void DeActivate()

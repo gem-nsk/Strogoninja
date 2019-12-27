@@ -15,6 +15,7 @@ public class Shop : ObjectInteractionBasement
     public SkinController _skins { get { return _Logic._Skins; } }
 
     public List<_Skin> _CurrentSkins = new List<_Skin>();
+    public _Skin _SelectedSkin;
 
     public override void Init()
     {
@@ -61,6 +62,7 @@ public class Shop : ObjectInteractionBasement
         {
             _CurrentSkins.Add(_id[i].GetData());
         }
+        _SelectedSkin = _skins.GetEnemySkin();
 
         _ui.FillGrid(_Skin._SkinType.Enemy);
     }
@@ -71,6 +73,7 @@ public class Shop : ObjectInteractionBasement
         {
             _CurrentSkins.Add(_id[i].GetData());
         }
+        _SelectedSkin = _skins.GetObjectSkin();
 
         _ui.FillGrid(_Skin._SkinType.Object);
     }
@@ -81,6 +84,7 @@ public class Shop : ObjectInteractionBasement
         {
             _CurrentSkins.Add(_id[i].GetData());
         }
+        _SelectedSkin = _skins.GetKnifeSkin();
 
         _ui.FillGrid(_Skin._SkinType.Knife);
     }

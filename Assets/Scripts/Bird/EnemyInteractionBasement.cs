@@ -40,13 +40,6 @@ public class EnemyInteractionBasement : ObjectInteractionBasement, ISkinHolder
             float angle = Mathf.Atan2(relative.x, relative.y) * Mathf.Rad2Deg;
             transform.Rotate(0, 0, -angle - 90);
 
-            if (transform.rotation.z < 270 && transform.rotation.z > 90)
-            {
-                rend.flipY = true;
-            }
-            else
-                rend.flipY = false;
-
             _time += (dist / maxVec.magnitude) * (Time.deltaTime / _Logic._Level._Settings._SpeedModifier);
             yield return null;
         }
@@ -81,5 +74,10 @@ public class EnemyInteractionBasement : ObjectInteractionBasement, ISkinHolder
     public void SetSkinObject(_Skin obj)
     {
         SetSkinObject((EnemySkin)obj);
+    }
+
+    public _Skin GetSkin()
+    {
+        return behaviour;
     }
 }

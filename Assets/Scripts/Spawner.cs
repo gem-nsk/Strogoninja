@@ -30,7 +30,16 @@ public class Spawner : ObjectInteractionBasement, ISkinHolder
             Debug.Log("spawned enemy");
             GameObject obj = Instantiate(prefabs[Random.Range(0, prefabs.Length)]);
 
-            obj.transform.position = GetPos();
+            Vector2 pos = GetPos();
+            Debug.Log(pos.normalized);
+
+            obj.transform.position = pos;
+
+            if(pos.normalized.x < 0)
+            {
+                obj.GetComponent<SpriteRenderer>().flipY = true;
+            }
+
             EnemyInteractionBasement enemy = obj.GetComponent<EnemyInteractionBasement>();
 
             enemy.Init(GameLogic.instance._object.transform, _EnemySkin.EnemyData.BaseSpeed);
@@ -105,5 +114,10 @@ public class Spawner : ObjectInteractionBasement, ISkinHolder
     public void SetSkinObject(_Skin obj)
     {
         SetSkinObject((EnemySkin)obj);
+    }
+
+    public _Skin GetSkin()
+    {
+        return _EnemySkin;
     }
 }

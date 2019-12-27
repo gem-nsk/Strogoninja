@@ -166,6 +166,11 @@ public class Knife : ObjectInteractionBasement, ISkinHolder
         }
     }
 
+    public _Skin GetSkin()
+    {
+        return _skin;
+    }
+
     //private void OnTriggerEnter2D(Collider2D collision)
     //{
     //    return;

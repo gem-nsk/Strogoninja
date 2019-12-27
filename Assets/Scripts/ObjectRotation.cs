@@ -101,4 +101,9 @@ public class ObjectRotation : ObjectInteractionBasement, ISkinHolder
     {
         SetSkinObject((ObjectSkin)obj);
     }
+
+    public _Skin GetSkin()
+    {
+        return _skin;
+    }
 }
