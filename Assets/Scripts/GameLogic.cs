@@ -18,6 +18,7 @@ public class GameLogic : MonoBehaviour
     public SkinController _Skins;
     public Shop _Shop;
     public AIPlayer _AI;
+    public AdsController _Ads;
 
     public GameState _state;
 
