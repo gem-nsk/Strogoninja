@@ -9,6 +9,7 @@ namespace Skin
     public class _Skin
     {
         [Header("Shop settings")]
+        public string _Name;
         public int _Price;
         public bool _Unlocked;
         public _SkinType type;

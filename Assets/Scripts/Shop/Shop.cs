@@ -24,6 +24,9 @@ public class Shop : ObjectInteractionBasement
         _CurrentSkins.Clear();
 
         _ui.Init();
+
+        //analytics
+        Firebase.Analytics.FirebaseAnalytics.LogEvent("on_shop");
     }
 
     public override void DeActivate()
@@ -140,6 +143,9 @@ public class Shop : ObjectInteractionBasement
             _Logic._Score.AddCoins(-_element._skin._Price);
             _element._skin._Unlocked = true;
 
+            //analytics
+            Firebase.Analytics.FirebaseAnalytics.LogEvent(_element._skin._Name);
+            Debug.Log("Event sended - " + _element._skin._Name);
             return true;
         }
         else { return false; }

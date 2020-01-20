@@ -46,8 +46,16 @@ public class Level : ObjectInteractionBasement
     public void Setlevel(int id)
     {
         _Settings = GetLevelFromResources(id);
-        //_Settings = _Pattern.GetDifficulty(id).GetSettings(id);
         PlayerPrefs.SetInt(LevelIdKey, id);
+
+        //analytics
+        Firebase.Analytics.Parameter[] _Params =
+        {
+            new Firebase.Analytics.Parameter(Firebase.Analytics.FirebaseAnalytics.ParameterLevel, _Settings._levelNumber)
+        };
+
+        Firebase.Analytics.FirebaseAnalytics.LogEvent(Firebase.Analytics.FirebaseAnalytics.EventLevelUp, _Params);
+        Debug.Log("event sended - level" + _Settings._levelNumber);
     }
     private bool SaveExists()
     {

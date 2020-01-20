@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Fish_2
   m_EditorClassIdentifier: 
   _Data:
+    _Name: shop_enemy_buyed_shrimp
     _Price: 40
     _Unlocked: 0
     type: 0

@@ -12,6 +12,7 @@ public class GameCanvas : ObjectInteractionBasement
     public GameObject _WinScreen;
     public Text _Text_level;
     public Text _Text_nextlevel;
+    public GameObject _CoinPopup;
 
     public ParticleSystem _WinParticles;
 
@@ -57,6 +58,13 @@ public class GameCanvas : ObjectInteractionBasement
         _TapToStartText.SetActive(false);
         _WinScreen.SetActive(true);
         _WinParticles.Play();
+    }
+
+    public void SpawnCoinPopup(Transform _obj, int _value)
+    {
+        GameObject obj = Instantiate(_CoinPopup, (_obj.transform.position), Quaternion.identity, transform);
+        obj.GetComponent<Text>().text = "+" + _value;
+        Destroy(obj, 1);
     }
 
     public void UpdateScoreText(int score)

@@ -66,6 +66,16 @@ public class GameLogic : MonoBehaviour
     public void Loose()
     {
         SwitchState(_GameState_DeathScreen);
+
+        Firebase.Analytics.Parameter[] _Params =
+        {
+            new Firebase.Analytics.Parameter(Firebase.Analytics.FirebaseAnalytics.ParameterLevel, _Level._Settings._levelNumber),
+            new Firebase.Analytics.Parameter(Firebase.Analytics.FirebaseAnalytics.ParameterScore, _Level._Settings._TargetPoints),
+            new Firebase.Analytics.Parameter(Firebase.Analytics.FirebaseAnalytics.ParameterScore, _Score._Score)
+        };
+        Firebase.Analytics.FirebaseAnalytics.LogEvent(Firebase.Analytics.FirebaseAnalytics.EventLevelEnd, _Params);
+        Debug.Log("event sended: level - " + _Level._Settings._levelNumber + " target point: " + _Level._Settings._TargetPoints + " score: " + _Score._Score);
+
         _Score.ResetTotalScore();
     }
 

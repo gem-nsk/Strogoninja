@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Knife_2
   m_EditorClassIdentifier: 
   _data:
+    _Name: shop_enemy_buyed_knife_2
     _Price: 100
     _Unlocked: 0
     type: 2

@@ -11,6 +11,7 @@ public class Crow : EnemyInteractionBasement
         obj.position = new Vector3(transform.position.x, transform.position.y, -3);
 
         _Logic._Score.AddTempCoins(1);
+        _Logic._canvas.SpawnCoinPopup(transform, 1);
 
         Destroy(gameObject);
     }

@@ -59,7 +59,7 @@ public class Spawner : ObjectInteractionBasement, ISkinHolder
     public void DeleteEnemy()
     {
         if (_currentPrefab != null)
-            _currentPrefab.GetComponent<EnemyInteractionBasement>().Interact();
+            Destroy(_currentPrefab.gameObject);
     }
 
     public ObjectInteractionBasement GetCurrentEnemy() { return _currentPrefab?.GetComponent<ObjectInteractionBasement>(); }

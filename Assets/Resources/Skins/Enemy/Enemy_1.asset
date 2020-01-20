@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Enemy_1
   m_EditorClassIdentifier: 
   _data:
+    _Name: shop_enemy_buyed_crow
     _Price: 0
     _Unlocked: 1
     type: 1

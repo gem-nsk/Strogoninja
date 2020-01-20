@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Fish_3
   m_EditorClassIdentifier: 
   _Data:
+    _Name: shop_enemy_buyed_fish_2
     _Price: 100
+    _Unlocked: 0
     type: 0
     _Sprites:
     - {fileID: -295074275853202536, guid: 0747e4485989e416c8f1ec3bd56bb169, type: 3}

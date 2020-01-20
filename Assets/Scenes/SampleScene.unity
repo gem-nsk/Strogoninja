@@ -6911,6 +6911,8 @@ MonoBehaviour:
   _WinScreen: {fileID: 1644195962}
   _Text_level: {fileID: 1909123770}
   _Text_nextlevel: {fileID: 1236433668}
+  _CoinPopup: {fileID: 5697401612669514601, guid: df27c2aed8c2843e0957b6c13577bbe6,
+    type: 3}
   _WinParticles: {fileID: 637265248}
   _isOn: 0
 --- !u!1 &955159605
@@ -7981,6 +7983,7 @@ MonoBehaviour:
   StartDelay: 4
   Delay: 0.4
   _EnemySkin:
+    _Name: 
     _Price: 0
     _Unlocked: 0
     type: 0
@@ -8045,6 +8048,7 @@ MonoBehaviour:
   _ui: {fileID: 1642220021}
   _CurrentSkins: []
   _SelectedSkin:
+    _Name: 
     _Price: 0
     _Unlocked: 0
     type: 0
